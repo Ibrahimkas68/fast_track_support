@@ -5,6 +5,49 @@
 Mini-application de support en français : création de tickets, file filtrée et paginée,
 consultation et recommandation d’urgence expliquée. La priorité humaine est conservée.
 
+## Démarrage avec Docker (recommandé)
+
+Prérequis : Docker avec Compose v2, moteur démarré et connexion internet pour le premier build.
+Aucune installation locale de PHP, Composer, Node.js ni clé API n’est nécessaire.
+
+```bash
+git clone https://github.com/Ibrahimkas68/fast_track_support.git
+cd fast_track_support
+docker compose up -d --build
+docker compose ps
+```
+
+Attendre l’état `healthy`, puis ouvrir **http://localhost:8080/tickets**.
+Le premier démarrage génère la clé applicative, applique les migrations et crée les neuf
+exemples. Les redémarrages conservent les tickets et ne rejouent pas les exemples.
+Le build utilise les fichiers de dépendances verrouillés, compile les assets et exclut
+les dépendances PHP de développement. Apache sert uniquement le dossier `public`.
+
+```bash
+docker compose logs -f app
+docker compose down
+# Relancer avec les mêmes données :
+docker compose up -d
+```
+
+SQLite, la clé et les fichiers Laravel sont persistés dans le volume `app-data`, séparé
+de votre base locale. `docker compose down -v` supprime définitivement ces données.
+Pour changer le port : `APP_PORT=8081 docker compose up -d`.
+Les variables facultatives OpenAI peuvent être définies dans votre environnement ou
+votre `.env` local, qui n’est jamais copié dans l’image. Après modification, recréer
+le conteneur avec `docker compose up -d --force-recreate`.
+
+Vérifié sur ARM64 : build complet, conteneur sain, création HTTP avec CSRF, chargement
+des assets, protection des fichiers privés et conservation des dix tickets de contrôle
+ainsi que de la clé après remplacement du conteneur. La suite PHP locale passe
+également : 169 tests, 612 assertions. Le démarrage ne lance pas les tests dans l’image.
+
+Cette configuration sert la démonstration sur l’interface locale uniquement. Elle reste
+à une instance avec SQLite. Une montée en charge multi-instance nécessiterait une base
+partagée validée, un stockage partagé, une clé commune et des migrations exécutées
+séparément avant le démarrage des instances. Aucun déploiement public sans authentification
+n’est prévu par ce livrable.
+
 ## Installation locale
 
 Prérequis : **PHP 8.4.1+** pour les dépendances verrouillées, Composer 2, SQLite,

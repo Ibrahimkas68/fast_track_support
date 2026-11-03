@@ -1,0 +1,43 @@
+name: fast-track-support
+services:
+  app:
+    build:
+      context: .
+      target: app
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:80"
+    environment:
+      APP_NAME: Fast Track Support
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_URL: http://localhost:${APP_PORT:-8080}
+      APP_LOCALE: fr
+      APP_FALLBACK_LOCALE: fr
+      LOG_CHANNEL: stderr
+      SESSION_DRIVER: database
+      CACHE_STORE: database
+      QUEUE_CONNECTION: sync
+      URGENCY_DRIVER: ${URGENCY_DRIVER:-local}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      URGENCY_CONNECT_TIMEOUT: "2"
+      URGENCY_TIMEOUT: "5"
+      TICKET_RATE_LIMIT: "10"
+    volumes:
+      - app-data:/var/www/html/storage
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1/up') === false ? 1 : 0);"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  app-data:
