@@ -87,3 +87,11 @@ exclusion des identifiants/dates/références injectés, recherche et absence, t
 trois priorités, neuf combinaisons AND, tri date/id, 45 tickets répartis sur trois pages,
 filtres conservés sans paramètre arbitraire et états vides. La priorité humaine reste
 distincte de la recommandation. Aucun appel externe ni migration sur la base de travail.
+
+## Middleware et erreurs, 2026-11-03
+
+T006 : résolution du repository, limiteur par IP et erreurs 404/419/422/429 en français.
+Les 13 cas de FoundationTest passent (30 assertions). Suite : 60 tests, 132 assertions.
+Les réponses JSON et les en-têtes Retry-After/X-RateLimit sont préservés. Les détails
+d’exception restent masqués même avec debug actif. Pint réussi. Le limiteur est
+enregistré ; son attachement à la route de création sera réalisé dans T013.

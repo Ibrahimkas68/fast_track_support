@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,4 +19,24 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+
+        $exceptions->render(function (HttpExceptionInterface $exception, Request $request) {
+            $status = $exception->getStatusCode();
+            $messages = [
+                404 => 'Page introuvable',
+                419 => 'Formulaire expiré',
+                422 => 'Paramètres invalides',
+                429 => 'Trop de demandes',
+            ];
+
+            if (! isset($messages[$status])) {
+                return null;
+            }
+
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json(['message' => $messages[$status]], $status, $exception->getHeaders());
+            }
+
+            return response()->view('errors.'.$status, [], $status, $exception->getHeaders());
+        });
     })->create();
