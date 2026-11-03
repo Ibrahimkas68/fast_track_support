@@ -1,11 +1,11 @@
-# Installation et validation cible
+# Installation et validation
 
-Ce guide décrit la version à implémenter. Les commandes de tests métier, seeds et options
-ci-dessous ne prouvent pas que ces fonctions existent déjà dans le socle.
+Ce guide décrit le livrable local. Voir [les résultats exécutés](../../docs/verification.md)
+pour distinguer les contrôles réalisés et les limites.
 
 ## Prérequis
 
-PHP 8.3+ avec SQLite, Composer, Node.js compatible Vite 8 et npm. Une clé LLM est facultative.
+PHP 8.4.1+ avec SQLite et mbstring, Composer, Node.js 22.12+ et npm. Une clé LLM est facultative.
 Exécuter depuis la racine du projet, sur un checkout propre dédié à la validation.
 
 ```bash
@@ -23,7 +23,7 @@ Configurer `APP_URL` avec l’adresse réellement utilisée. Ouvrir cette adress
 Garder `URGENCY_DRIVER=local` pour une démonstration sans fournisseur.
 Voir [le contrat d’analyse](contracts/urgency-analysis.md) pour l’option externe.
 
-## Vérifications automatisées cibles
+## Vérifications automatisées
 
 ```bash
 php artisan test --compact tests/Unit/RuleBasedUrgencyAnalyzerTest.php
@@ -35,8 +35,8 @@ vendor/bin/pint --dirty --format agent
 npm run build
 ```
 
-Les noms de tests désignent les fichiers prévus. La génération des tâches précisera leur
-création. Les tests utilisent une base isolée et interdisent les appels HTTP non simulés.
+Les tests existent et utilisent SQLite en mémoire. Les scénarios fournisseur interdisent
+les appels HTTP non simulés. Les tests PHP ne nécessitent pas le build Vite.
 Ne pas lancer de tests contre une base de démonstration contenant des données utiles.
 
 ## Parcours navigateur

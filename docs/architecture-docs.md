@@ -1,6 +1,6 @@
-# Architecture proposée
+# Architecture
 
-Statut : conception à valider. Les composants métier ne sont pas encore implémentés.
+Statut : implémentée pour le livrable local. Résultats et limites : [verification.md](verification.md).
 
 ## Choix techniques
 
@@ -25,7 +25,7 @@ flowchart TD
     WEB --> V[Validation]
     V --> C[TicketController]
     C --> S[TicketService]
-    S --> A[UrgencyAnalyzer]
+    S --> A[UrgencyAnalyzerInterface / ResilientUrgencyAnalyzer]
     A --> L[Adaptateur LLM]
     L --> CHECK[Validation de la réponse]
     L -- Erreur ou timeout --> F[Analyse locale]
@@ -46,7 +46,7 @@ flowchart TD
 | TicketService | Coordination de la création et de l’analyse |
 | TicketRepositoryInterface | Contrat de création et de consultation filtrée |
 | EloquentTicketRepository | Persistance et requêtes via le modèle Ticket |
-| UrgencyAnalyzer | Appel LLM, validation du résultat et secours local |
+| ResilientUrgencyAnalyzer | Appel LLM, validation du résultat et secours local |
 | Adaptateur LLM | Appel HTTP et traduction de la réponse fournisseur |
 | Analyseur local | Règles textuelles, explication et valeur par défaut documentées |
 
@@ -62,7 +62,7 @@ Le conteneur Laravel associe l’interface du repository à son implémentation.
 
 Aucune transaction de base de données ne reste ouverte pendant l’appel réseau. Une erreur de base est un échec de création ; une erreur LLM déclenche le secours.
 
-## Modèle de données proposé
+## Modèle de données
 
 | Champ Ticket | Rôle |
 |---|---|
@@ -75,7 +75,7 @@ Aucune transaction de base de données ne reste ouverte pendant l’appel résea
 | analysis_source | llm ou local |
 | created_at / updated_at | Dates techniques |
 
-Prévoir pagination, ordre stable par date puis identifiant et index adaptés aux filtres. Les libellés français appartiennent à la présentation.
+Pagination de 20 tickets, ordre stable par date puis identifiant et trois index adaptés aux filtres. Les libellés français appartiennent à la présentation.
 
 ## Sécurité
 

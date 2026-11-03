@@ -2,8 +2,8 @@
 
 Input: spec.md, plan.md, research.md, data-model.md, contracts/, quickstart.md.
 All task paths are relative to the repository root. All tasks start unchecked.
-Tests precede the corresponding implementation. Obtain approval for each concrete
-implementation batch before editing files.
+Tests precede the corresponding implementation. The user authorized autonomous continuation and focused commits on 2026-11-03,
+waiving repeated batch/final approval requests within this implementation scope.
 
 ## Phase 1: Setup
 
@@ -39,7 +39,7 @@ refresh, and verify persistence; invalid submissions create no ticket.
 - [X] T012 [US1] Implement creation/detail orchestration in app/Services/TicketService.php; analyze before the atomic insert, preserve human priority and isolate persistence errors without logging sensitive bindings.
 - [X] T013 [US1] Implement create/store/show in app/Http/Controllers/TicketController.php and routes/web.php; retain Controller → Service → Repository → Model, numeric IDs, CSRF, throttling and explicit redirects.
 - [X] T014 [US1] Build resources/views/tickets/create.blade.php, resources/views/tickets/show.blade.php and resources/views/components/tickets/form.blade.php, resources/views/components/tickets/detail.blade.php, resources/views/components/tickets/priority-badge.blade.php, resources/views/components/tickets/status-badge.blade.php and resources/views/components/tickets/urgency-analysis.blade.php with escaped output, old input, field errors and separate recommendation provenance.
-- [ ] T015 [US1] Prevent simultaneous submissions and focus the first validation error in resources/js/forms.js, imported by resources/js/app.js; run creation/classifier tests and record browser persistence, retry and double-click results in docs/verification.md.
+- [X] T015 [US1] Prevent simultaneous submissions and focus the first validation error in resources/js/forms.js, imported by resources/js/app.js; run creation/classifier tests and record browser persistence, retry and double-click results in docs/verification.md.
 
 Checkpoint: US1 works without a provider or JavaScript. Run T008/T009 to confirm the
 expected behavioral failures before implementation, then verify they pass after integration.
@@ -60,7 +60,7 @@ and priority combination, pagination, reset, ordering and empty states.
 - [X] T017 [US2] Implement validated optional filters and positive page numbers in app/Http/Requests/TicketFilterRequest.php; distinguish invalid filters from valid empty results.
 - [X] T018 [US2] Connect index/home routes through app/Http/Controllers/TicketController.php, app/Services/TicketService.php and routes/web.php to repository pagination; use validated parameters, 20 results and descending date/id order.
 - [X] T019 [US2] Build resources/views/tickets/index.blade.php with semantic desktop table, mobile cards, filtered total, GET filters, Apply/reset actions and pagination; reuse badge components and canonical detail links.
-- [ ] T020 [US2] Run tests/Feature/TicketListingTest.php and verify filtering, reset, detail navigation and pagination without JavaScript; record results in docs/verification.md.
+- [X] T020 [US2] Run tests/Feature/TicketListingTest.php and verify filtering, reset, detail navigation and pagination without JavaScript; record results in docs/verification.md.
 
 Checkpoint: the queue is testable with factories, independently of POST creation.
 
@@ -92,17 +92,17 @@ Independent test: follow the README in an isolated clean copy, initialize
 SQLite, run tests/build and demonstrate creation/filtering without a key.
 
 - [X] T027 [US4] Create repeatable fictional demonstration seeds in database/seeders/TicketSeeder.php and database/seeders/DatabaseSeeder.php covering nine status/priority combinations, tied timestamps and clearly simulated llm/local results; make no provider calls.
-- [ ] T028 [US4] Update README.md and docs/livraison.md with Figma as the first presentation link, verified prerequisites/commands, migrations/seeds, local defaults, optional external analysis, privacy disclosure, tests and known limitations.
-- [ ] T029 [US4] Execute specs/001-support-ticket-triage/quickstart.md in an isolated clean copy using the lockfiles; record installation, no-key journeys and reproducible command results in docs/verification.md.
+- [X] T028 [US4] Update README.md and docs/livraison.md with Figma as the first presentation link, verified prerequisites/commands, migrations/seeds, local defaults, optional external analysis, privacy disclosure, tests and known limitations.
+- [X] T029 [US4] Execute specs/001-support-ticket-triage/quickstart.md in an isolated clean copy using the lockfiles; record installation, no-key journeys and reproducible command results in docs/verification.md.
 
 Checkpoint: installation and delivery claims have execution evidence, with limits stated.
 
 ## Phase 7: Integration, security and final QA
 
-- [ ] T030 Add tests/Feature/TicketSecurityTest.php for escaped ticket/model text, rejected extra fields, invalid input before analysis and configurable rate limiting; verify real-server CSRF rejection separately and record zero writes/outbound calls in docs/verification.md.
-- [ ] T031 Implement shared GET fragments and accessible native dialogs in app/Http/Controllers/TicketController.php, resources/views/components/ui/panel.blade.php and resources/js/panels.js, imported by resources/js/app.js; preserve canonical links, ordinary POST navigation, Escape and focus restoration.
-- [ ] T032 Run targeted tests, the full Pest suite, Pint and npm build; perform desktop/390px, keyboard, contrast, loading/error, no-JavaScript and recoverable persistence-failure QA from specs/001-support-ticket-triage/quickstart.md; fix approved defects and record evidence in docs/verification.md.
-- [ ] T033 Review actual changes against specs/001-support-ticket-triage/spec.md, constitution and docs/livraison.md; check the delivery excludes secrets/local data, report unexecuted checks and request final approval before completion, commit, push or publication.
+- [X] T030 Add tests/Feature/TicketSecurityTest.php for escaped ticket/model text, rejected extra fields, invalid input before analysis and configurable rate limiting; verify real-server CSRF rejection separately and record zero writes/outbound calls in docs/verification.md.
+- [X] T031 Implement shared GET fragments and accessible native dialogs in app/Http/Controllers/TicketController.php, resources/views/components/ui/panel.blade.php and resources/js/panels.js, imported by resources/js/app.js; preserve canonical links, ordinary POST navigation, Escape and focus restoration.
+- [X] T032 Run targeted tests, the full Pest suite, Pint and npm build; perform desktop/390px, keyboard, contrast, loading/error, no-JavaScript and recoverable persistence-failure QA from specs/001-support-ticket-triage/quickstart.md; fix approved defects and record evidence in docs/verification.md.
+- [X] T033 Review actual changes against specs/001-support-ticket-triage/spec.md, constitution and docs/livraison.md; check the delivery excludes secrets/local data, report unexecuted checks and request final approval before completion, commit, push or publication.
 
 ## Dependencies and parallel work
 

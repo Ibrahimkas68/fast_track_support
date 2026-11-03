@@ -137,3 +137,48 @@ le jeton CSRF. Les tests de sécurité couvrent échappement, ancien input table
 invalide avant réseau et limitation de la vraie route POST avant un second appel externe.
 Suite : 168 tests, 601 assertions ; Pint réussi. Les tests navigateur et CSRF sur serveur
 réel restent à exécuter avant de clôturer T030/T031/T032.
+
+## Validation finale sur copie isolée, 2026-11-03
+
+| Contrôle | Preuve et résultat |
+|---|---|
+| Installation propre | Archive Git sans vendor/node_modules/.env ; Composer installe 132 paquets et npm 98 depuis les lockfiles |
+| Commandes | Copie .env.example, key:generate, création SQLite et migrate --seed réussis |
+| Build propre | Premier essai bloqué par le réseau sandbox vers fonts.bunny.net ; nouvel essai autorisé réussi |
+| Tests propres | Après isolation de Vite dans TestCase, 169 tests passent ; le build reste vérifié séparément |
+| Browser desktop | Table visible à 1440px ; document de largeur 1440px, sans débordement |
+| Browser mobile | Cartes à 390px ; document de largeur 390px, panneau de 358px ; aucun débordement constaté |
+| Création navigateur | Ticket FT-0010, priorité Basse et recommandation Haute ; rechargement persistant |
+| Double clic réel | Exactement un ticket « Validation navigateur locale » dans la base QA |
+| Validation réelle | Titre composé d’espaces refusé ; description conservée et focus sur le titre invalide |
+| Clavier | Entrée ouvre les panneaux, Tab/Shift+Tab restent à l’intérieur, Échap ferme et restaure le focus |
+| Pagination réelle | 44 tickets QA, navigation de page 2 vers page 3, libellés français et liens mobiles ≥44px |
+| CSRF réel | POST sans jeton : 419 français et zéro ticket ajouté |
+| Limiteur réel | 429 avec Retry-After ; une requête bloquée supplémentaire ajoute zéro ticket |
+| Sans JavaScript | Client HTTP avec cookies/CSRF : refus invalide puis création et détail HTML réussis |
+| Stockage indisponible | Trigger temporaire sur la seule copie QA : erreur récupérable, saisie conservée, zéro insertion ; trigger retiré |
+| Contrastes | Neuf paires de couleurs testées mathématiquement : rapports de 5,89:1 à 16,03:1, tous ≥4,5:1 |
+| Console navigateur | Aucun message d’erreur observé pendant le parcours testé |
+| Dépôt public | Page GitHub accessible sans authentification, réponse HTTP 200 |
+
+Corrections issues de QA : identifiants distincts pour filtres/formulaire, boucle de focus
+explicite dans le dialog, cibles mobiles de 44px, pagination française et seeds datés
+relativement au passé. Les tests Blade ne dépendent plus d’un manifeste Vite préexistant.
+Le README précise PHP 8.4.1+, exigé par les versions verrouillées, et Node 22.12+.
+Le build garde un avertissement facultatif fontaine ; aucune dépendance ajoutée.
+Les vérifications HTTP se déroulent en environnement local réel, sans désactiver CSRF,
+avec URGENCY_DRIVER=local. La base et le fichier .env du projet de travail restent inchangés.
+
+Limites : aucune API payante réelle, aucun PostgreSQL ni test de charge, aucun audit
+exhaustif d’accessibilité. Accès Figma anonyme du destinataire à confirmer par le propriétaire.
+Le temps de saisie n’a pas fait l’objet d’une mesure chronométrée formelle ; la borne de
+10s est vérifiée seulement pour les pannes simulées et les options du client HTTP.
+
+## Revue de remise
+
+Résultat final : 169 tests réussis, 612 assertions ; Pint, Vite et git diff --check
+réussis. Liens Markdown locaux vérifiés. Scan ciblé des fichiers suivis : aucune clé
+privée ni signature de jeton détectée ; .env, bases SQLite et dépendances non suivis.
+Les empreintes de .env et des deux lockfiles sont identiques à celles avant implémentation.
+Aucun hook d’extension configuré. La poursuite et les commits autonomes ont été
+explicitement autorisés par l’utilisateur, sans demandes d’approbation répétées.

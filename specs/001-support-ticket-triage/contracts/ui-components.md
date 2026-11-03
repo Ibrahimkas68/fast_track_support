@@ -19,14 +19,14 @@ compteur, filtres et liste ; aucune navigation ou statistique hors périmètre.
 | ui/button | variant, type ; slot label ; attributs aria/disabled | Action cohérente et focus visible |
 | ui/alert | variant, titre ; slot contenu | Confirmation ou erreur compréhensible |
 | ui/empty-state | titre, description ; slot action | Liste vide ou filtre sans résultat |
-| ui/panel | id, titre ; slot contenu/actions | Panneau dialog avec nom accessible |
+| ui/panel | id, title ; contenu chargé par le script | Panneau dialog avec nom accessible |
 | forms/field | name, label, help, error ; slot contrôle | Label, aide et erreur reliés au contrôle |
 | forms/input, select, textarea | id, name, value ; attributs ; options/slot | Contrôles natifs réutilisables |
 | tickets/priority-badge | enum priority | Libellé, icône et couleur de priorité |
 | tickets/status-badge | enum status | Libellé, icône et couleur de statut |
-| tickets/form | action, options, valeurs, erreurs | Un seul formulaire pour page et panneau |
+| tickets/form | action, errorBag ; ancienne saisie de session | Un seul formulaire pour page et panneau |
 | tickets/detail | ticket | Même contenu pour page et panneau |
-| tickets/urgency-analysis | résultat | Recommandation, motif, provenance et avertissement |
+| tickets/urgency-analysis | priority, reason, source | Recommandation, motif, provenance et avertissement |
 
 Utiliser les conventions Blade `@props`, slots et attribute bag. Éviter les props implicites,
 les requêtes dans les composants et les composants universels à nombreux flags.
@@ -48,6 +48,10 @@ Les pages index/create/show assemblent les composants ; elles ne contiennent pas
   Bloquer les soumissions simultanées sans désactiver les valeurs nécessaires à l’envoi.
 - `panels.js` gère chargement et focus ; `forms.js` gère l’état d’envoi. Aucun état métier
   dupliqué côté client, aucun appel fournisseur depuis JavaScript.
+
+La pagination utilise `tickets/pagination` avec la prop `paginator`, des liens
+Précédent/Suivant et un libellé de page en français. Les identifiants des filtres sont
+`filter-status` et `filter-priority`, distincts de ceux du formulaire dans le panneau.
 
 ## États obligatoires
 
