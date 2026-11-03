@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram name="Architecture" id="0">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1600" pageHeight="1100">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="u" value="Support" style="shape=umlActor;whiteSpace=wrap;html=0;fillColor=#fff2cc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="100" width="70" height="90" />
+        </mxCell>
+        <mxCell id="ui" value="Blade + Tailwind" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="160" y="100" width="190" height="70" />
+        </mxCell>
+        <mxCell id="web" value="Routes web / CSRF / limitation" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="400" y="100" width="230" height="70" />
+        </mxCell>
+        <mxCell id="v" value="Validation" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="680" y="100" width="180" height="70" />
+        </mxCell>
+        <mxCell id="c" value="TicketController" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="100" width="190" height="70" />
+        </mxCell>
+        <mxCell id="s" value="TicketService" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="250" width="190" height="70" />
+        </mxCell>
+        <mxCell id="a" value="UrgencyAnalyzer" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="250" width="210" height="70" />
+        </mxCell>
+        <mxCell id="llm" value="Adaptateur LLM / fournisseur externe" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="310" y="250" width="230" height="80" />
+        </mxCell>
+        <mxCell id="check" value="Validation du résultat" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="310" y="410" width="230" height="70" />
+        </mxCell>
+        <mxCell id="local" value="Analyse locale de secours" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="410" width="210" height="70" />
+        </mxCell>
+        <mxCell id="i" value="TicketRepositoryInterface" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="410" width="230" height="70" />
+        </mxCell>
+        <mxCell id="r" value="EloquentTicketRepository" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="560" width="230" height="70" />
+        </mxCell>
+        <mxCell id="m" value="Ticket" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="710" width="230" height="70" />
+        </mxCell>
+        <mxCell id="db" value="SQLite" style="shape=cylinder3;boundedLbl=1;size=15;whiteSpace=wrap;html=0;fillColor=#d5e8d4;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1230" y="700" width="140" height="100" />
+        </mxCell>
+        <mxCell id="n" value="Conception proposée. LLM côté serveur. Aucune transaction ouverte pendant le réseau." style="shape=note;whiteSpace=wrap;html=0;fillColor=#fff2cc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="100" y="650" width="500" height="110" />
+        </mxCell>
+        <mxCell id="e0" source="u" target="ui" value="" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e1" source="ui" target="web" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e2" source="web" target="v" value="" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e3" source="v" target="c" value="" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e4" source="c" target="s" value="" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e5" source="s" target="a" value="description" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e6" source="a" target="llm" value="délai borné" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e7" source="llm" target="check" value="réponse" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e8" source="llm" target="local" value="erreur / timeout" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e9" source="check" target="local" value="réponse invalide" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e10" source="check" target="a" value="résultat valide" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e11" source="local" target="a" value="résultat local" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e12" source="s" target="i" value="enregistrement" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e13" source="i" target="r" value="implémentation injectée" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e14" source="r" target="m" value="" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e15" source="m" target="db" value="requêtes paramétrées" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Création du ticket" id="1">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1600" pageHeight="1100">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="u" value="Formulaire Blade" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="80" width="240" height="70" />
+        </mxCell>
+        <mxCell id="v" value="CSRF et validation serveur" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="360" y="80" width="260" height="70" />
+        </mxCell>
+        <mxCell id="s" value="TicketService" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="700" y="80" width="240" height="70" />
+        </mxCell>
+        <mxCell id="a" value="Analyse LLM bornée" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="700" y="240" width="240" height="70" />
+        </mxCell>
+        <mxCell id="f" value="Secours local si erreur, clé absente ou résultat invalide" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1040" y="240" width="300" height="90" />
+        </mxCell>
+        <mxCell id="res" value="Recommandation validée + source + explication" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="700" y="420" width="300" height="90" />
+        </mxCell>
+        <mxCell id="save" value="Repository → Model → SQLite" style="shape=cylinder3;boundedLbl=1;size=15;whiteSpace=wrap;html=0;fillColor=#d5e8d4;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="700" y="600" width="300" height="80" />
+        </mxCell>
+        <mxCell id="view" value="Confirmation et détail Blade" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="360" y="780" width="300" height="70" />
+        </mxCell>
+        <mxCell id="note" value="Priorité humaine préservée. Pas de réseau dans une transaction DB." style="shape=note;whiteSpace=wrap;html=0;fillColor=#fff2cc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="420" width="400" height="110" />
+        </mxCell>
+        <mxCell id="e0" source="u" target="v" value="POST" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e1" source="v" target="s" value="données valides" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e2" source="s" target="a" value="description" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e3" source="a" target="res" value="succès valide" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e4" source="a" target="f" value="échec" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e5" source="f" target="res" value="" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e6" source="res" target="save" value="persistance" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e7" source="save" target="view" value="succès" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e8" source="v" target="u" value="erreurs de saisie" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=0;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Modèle de données" id="2">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1600" pageHeight="1100">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t" value="Ticket&#10;&#10;id&#10;title&#10;description&#10;priority: low | medium | high&#10;status: open | in_progress | resolved&#10;suggested_priority: low | medium | high&#10;analysis_reason&#10;analysis_source: llm | local&#10;created_at&#10;updated_at" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="150" y="120" width="600" height="430" />
+        </mxCell>
+        <mxCell id="n" value="Référence FT-… dérivée de id.&#10;Libellés français dans la présentation.&#10;Pagination et ordre stable par date puis id.&#10;Index adaptés aux filtres.&#10;Aucune relation métier supplémentaire requise." style="shape=note;whiteSpace=wrap;html=0;fillColor=#fff2cc;strokeColor=#64748b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="850" y="160" width="490" height="240" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
