@@ -9,6 +9,7 @@ use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\TicketFilterRequest;
 use App\Services\TicketService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\View;
 
@@ -28,9 +29,11 @@ class TicketController extends Controller
         ]);
     }
 
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('tickets.create', ['formErrors' => session('errors', new ViewErrorBag)]);
+        return view($request->query('panel') === '1' ? 'tickets.partials.create' : 'tickets.create', [
+            'formErrors' => session('errors', new ViewErrorBag),
+        ]);
     }
 
     public function store(StoreTicketRequest $request): RedirectResponse
@@ -50,11 +53,11 @@ class TicketController extends Controller
             ->with('success', 'Le ticket a bien été créé.');
     }
 
-    public function show(int $ticket): View
+    public function show(Request $request, int $ticket): View
     {
         $record = $this->tickets->find($ticket);
         abort_if($record === null, 404);
 
-        return view('tickets.show', ['ticket' => $record]);
+        return view($request->query('panel') === '1' ? 'tickets.partials.show' : 'tickets.show', ['ticket' => $record]);
     }
 }

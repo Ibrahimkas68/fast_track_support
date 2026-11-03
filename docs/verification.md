@@ -127,3 +127,13 @@ simulé respectent l’objectif de 10s dans ces tests locaux. Aucun délai rése
 Aucun appel LLM réel effectué. Les HTTP fakes interdisent les appels parasites.
 Les sources et motifs sont conservés, les motifs échappés, la priorité humaine inchangée.
 Les journaux ne contiennent que source, durée et catégorie maîtrisée. Pint réussi.
+
+## Données de démonstration et panneaux, 2026-11-03
+
+T027 : neuf combinaisons statut/priorité, rechargement des seeds sans doublon ni appel
+fournisseur. Les deux exemples de source llm sont marqués fictifs dans leur motif.
+Les fragments HTML create/show utilisent les composants des pages complètes et gardent
+le jeton CSRF. Les tests de sécurité couvrent échappement, ancien input tableau, entrée
+invalide avant réseau et limitation de la vraie route POST avant un second appel externe.
+Suite : 168 tests, 601 assertions ; Pint réussi. Les tests navigateur et CSRF sur serveur
+réel restent à exécuter avant de clôturer T030/T031/T032.

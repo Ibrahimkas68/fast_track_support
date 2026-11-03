@@ -91,7 +91,7 @@ Goal: deliver a reproducible project that an evaluator can inspect and run witho
 Independent test: follow the README in an isolated clean copy, initialize
 SQLite, run tests/build and demonstrate creation/filtering without a key.
 
-- [ ] T027 [US4] Create repeatable fictional demonstration seeds in database/seeders/TicketSeeder.php and database/seeders/DatabaseSeeder.php covering nine status/priority combinations, tied timestamps and clearly simulated llm/local results; make no provider calls.
+- [X] T027 [US4] Create repeatable fictional demonstration seeds in database/seeders/TicketSeeder.php and database/seeders/DatabaseSeeder.php covering nine status/priority combinations, tied timestamps and clearly simulated llm/local results; make no provider calls.
 - [ ] T028 [US4] Update README.md and docs/livraison.md with Figma as the first presentation link, verified prerequisites/commands, migrations/seeds, local defaults, optional external analysis, privacy disclosure, tests and known limitations.
 - [ ] T029 [US4] Execute specs/001-support-ticket-triage/quickstart.md in an isolated clean copy using the lockfiles; record installation, no-key journeys and reproducible command results in docs/verification.md.
 
