@@ -7,8 +7,8 @@ implementation batch before editing files.
 
 ## Phase 1: Setup
 
-- [ ] T001 Verify installed dependencies and baseline commands against composer.json, package.json and specs/001-support-ticket-triage/quickstart.md; preserve existing lockfiles and record results in docs/verification.md.
-- [ ] T002 Configure documented local defaults and optional provider variables in .env.example and config/urgency.php; never include a real secret or overwrite the working .env.
+- [X] T001 Verify installed dependencies and baseline commands against composer.json, package.json and specs/001-support-ticket-triage/quickstart.md; preserve existing lockfiles and record results in docs/verification.md.
+- [X] T002 Configure documented local defaults and optional provider variables in .env.example and config/urgency.php; never include a real secret or overwrite the working .env.
 
 ## Phase 2: Foundations
 
