@@ -9,6 +9,7 @@ use App\Enums\TicketStatus;
 use App\Exceptions\TicketStorageException;
 use App\Models\Ticket;
 use Illuminate\Database\QueryException;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class TicketService
 {
@@ -35,6 +36,12 @@ class TicketService
         } catch (QueryException) {
             throw new TicketStorageException('Impossible d’enregistrer le ticket. Veuillez réessayer.');
         }
+    }
+
+    /** @return LengthAwarePaginator<int, Ticket> */
+    public function paginate(?TicketStatus $status = null, ?TicketPriority $priority = null, int $page = 1): LengthAwarePaginator
+    {
+        return $this->tickets->paginate($status, $priority, $page);
     }
 
     public function find(int $id): ?Ticket

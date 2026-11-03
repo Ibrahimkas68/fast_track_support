@@ -6,6 +6,7 @@ use App\Enums\TicketPriority;
 use App\Enums\TicketStatus;
 use App\Exceptions\TicketStorageException;
 use App\Http\Requests\StoreTicketRequest;
+use App\Http\Requests\TicketFilterRequest;
 use App\Services\TicketService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\ViewErrorBag;
@@ -14,6 +15,18 @@ use Illuminate\View\View;
 class TicketController extends Controller
 {
     public function __construct(private TicketService $tickets) {}
+
+    public function index(TicketFilterRequest $request): View
+    {
+        $filters = $request->validated();
+        $status = TicketStatus::tryFrom((string) ($filters['status'] ?? ''));
+        $priority = TicketPriority::tryFrom((string) ($filters['priority'] ?? ''));
+
+        return view('tickets.index', [
+            'tickets' => $this->tickets->paginate($status, $priority, (int) ($filters['page'] ?? 1)),
+            'filters' => ['status' => $status?->value ?? '', 'priority' => $priority?->value ?? ''],
+        ]);
+    }
 
     public function create(): View
     {

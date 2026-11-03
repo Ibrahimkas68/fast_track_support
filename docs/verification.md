@@ -109,3 +109,10 @@ Le connecteur Figma a retourné les références du code layer mais n’a pas pe
 lecture ni le rendu du nœud. La présentation utilise la capture fournie et le contrat UI.
 Aucune revendication de correspondance pixel à pixel. Les contrôles navigateur de T015
 et l’intégration des panneaux restent à exécuter.
+
+## File filtrée, 2026-11-03
+
+T016 à T019 : 20 tests HTTP passent (77 assertions), avec neuf combinaisons, erreurs
+422, pagination et états vides. Suite : 124 tests, 434 assertions ; Pint réussi.
+Le test du scaffold vérifie désormais la redirection accueil vers /tickets.
+Les contrôles de navigation réels de T020 restent à exécuter.

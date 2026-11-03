@@ -53,13 +53,13 @@ and priority combination, pagination, reset, ordering and empty states.
 
 ### Tests first
 
-- [ ] T016 [P] [US2] Write failing tests in tests/Feature/TicketListingTest.php for nine filter combinations, individual filters, invalid values, empty states, equal timestamps, more than 40 records and pagination query preservation.
+- [X] T016 [P] [US2] Write failing tests in tests/Feature/TicketListingTest.php for nine filter combinations, individual filters, invalid values, empty states, equal timestamps, more than 40 records and pagination query preservation.
 
 ### Implementation
 
-- [ ] T017 [US2] Implement validated optional filters and positive page numbers in app/Http/Requests/TicketFilterRequest.php; distinguish invalid filters from valid empty results.
-- [ ] T018 [US2] Connect index/home routes through app/Http/Controllers/TicketController.php, app/Services/TicketService.php and routes/web.php to repository pagination; use validated parameters, 20 results and descending date/id order.
-- [ ] T019 [US2] Build resources/views/tickets/index.blade.php with semantic desktop table, mobile cards, filtered total, GET filters, Apply/reset actions and pagination; reuse badge components and canonical detail links.
+- [X] T017 [US2] Implement validated optional filters and positive page numbers in app/Http/Requests/TicketFilterRequest.php; distinguish invalid filters from valid empty results.
+- [X] T018 [US2] Connect index/home routes through app/Http/Controllers/TicketController.php, app/Services/TicketService.php and routes/web.php to repository pagination; use validated parameters, 20 results and descending date/id order.
+- [X] T019 [US2] Build resources/views/tickets/index.blade.php with semantic desktop table, mobile cards, filtered total, GET filters, Apply/reset actions and pagination; reuse badge components and canonical detail links.
 - [ ] T020 [US2] Run tests/Feature/TicketListingTest.php and verify filtering, reset, detail navigation and pagination without JavaScript; record results in docs/verification.md.
 
 Checkpoint: the queue is testable with factories, independently of POST creation.
