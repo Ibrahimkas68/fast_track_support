@@ -76,11 +76,28 @@ Laravel 13.39, Blade, Tailwind 4, Vite 8, SQLite et Pest 5. La chaîne métier e
 **Controller → Service → TicketRepositoryInterface → Eloquent → Ticket**.
 Le fournisseur est isolé derrière `UrgencyAnalyzerInterface`.
 
+```mermaid
+flowchart TB
+    UI["Blade et Tailwind"] --> HTTP["CSRF, limiteur et validation"]
+    HTTP --> C["TicketController"]
+    C --> S["TicketService"]
+    S --> R["TicketRepositoryInterface"]
+    R --> E["EloquentTicketRepository"]
+    E --> M["Ticket"]
+    M --> DB[("SQLite")]
+    S --> A["UrgencyAnalyzerInterface"]
+    A --> LLM["API OpenAI : délai borné"]
+    A --> LOCAL["Règles locales"]
+    LLM -. Échec ou réponse invalide .-> LOCAL
+```
+
+[Voir la séquence de création et le modèle de données](docs/architecture-docs.md#diagrammes).
+
 | Document | Contenu |
 |---|---|
 | [Cahier des charges](docs/cahier-des-charges.md) | Besoin et périmètre |
 | [Architecture](docs/architecture-docs.md) | Choix et sécurité |
-| [Diagrammes](docs/architecture.drawio) | Architecture, séquence, données |
+| [Diagrammes Mermaid](docs/architecture-docs.md#diagrammes) | Architecture, séquence et données affichées directement sur GitHub |
 | [Plan](specs/001-support-ticket-triage/plan.md) | Conception et évolutions possibles |
 | [Routes web](specs/001-support-ticket-triage/contracts/web-routes.md) | Contrat des endpoints HTML |
 | [Analyse](specs/001-support-ticket-triage/contracts/urgency-analysis.md) | Fournisseur et secours |
