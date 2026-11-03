@@ -32,8 +32,8 @@
 
 ## Limites de remise
 
-L’accès Figma avec le compte connecté a été vérifié précédemment ; l’accès anonyme du
-destinataire reste à contrôler par le propriétaire. Le connecteur n’a pas rendu le code layer
+L’accès Figma sans connexion a été vérifié lors de la revue finale : le fichier et
+le prototype sur le canvas sont visibles. Le connecteur n’a pas rendu le code layer
 pendant l’implémentation : pas de promesse de correspondance pixel à pixel.
 Aucun appel LLM réel, test PostgreSQL ou test de charge n’a été effectué.
 L’application sans authentification est destinée à une démonstration locale.

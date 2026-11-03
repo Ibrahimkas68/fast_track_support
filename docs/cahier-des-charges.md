@@ -20,7 +20,7 @@ Concevoir un micro-système de gestion de tickets avec analyse automatique de l�
 
 Le courriel prévoit environ quatre heures consécutives et une remise dans les 24 heures suivant réception. Il privilégie la lisibilité, le typage et l’organisation.
 
-## Décisions proposées
+## Décisions retenues
 
 - Option A : Laravel avec rendu Blade et JavaScript léger.
 - Interface en français, adaptée au desktop et au mobile.
@@ -29,7 +29,7 @@ Le courriel prévoit environ quatre heures consécutives et une remise dans les 
 - Conservation de la priorité suggérée, de son explication et de sa source.
 - Filtres statut et priorité combinables.
 
-La distinction entre priorité choisie et recommandation est une interprétation du besoin à valider avant implémentation.
+La distinction entre priorité choisie et recommandation est une interprétation retenue et confirmée dans ce projet. Le courriel demande un champ de priorité et une détection d’urgence, sans préciser leur interaction.
 
 ## Hors périmètre initial
 

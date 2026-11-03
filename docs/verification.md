@@ -170,7 +170,7 @@ Les vérifications HTTP se déroulent en environnement local réel, sans désact
 avec URGENCY_DRIVER=local. La base et le fichier .env du projet de travail restent inchangés.
 
 Limites : aucune API payante réelle, aucun PostgreSQL ni test de charge, aucun audit
-exhaustif d’accessibilité. Accès Figma anonyme du destinataire à confirmer par le propriétaire.
+exhaustif d’accessibilité. Accès Figma anonyme confirmé lors de la revue avant remise ci-dessous.
 Le temps de saisie n’a pas fait l’objet d’une mesure chronométrée formelle ; la borne de
 10s est vérifiée seulement pour les pannes simulées et les options du client HTTP.
 
@@ -182,3 +182,18 @@ privée ni signature de jeton détectée ; .env, bases SQLite et dépendances no
 Les empreintes de .env et des deux lockfiles sont identiques à celles avant implémentation.
 Aucun hook d’extension configuré. La poursuite et les commits autonomes ont été
 explicitement autorisés par l’utilisateur, sans demandes d’approbation répétées.
+
+## Revue avant remise, 2026-11-03
+
+- Tests relancés : 169 réussis, 612 assertions.
+- Build Vite réussi ; avertissement facultatif fontaine inchangé.
+- `composer validate --strict --no-check-publish` réussi.
+- `composer audit --locked` en ligne : aucune alerte ni dépendance abandonnée signalée.
+- `npm audit` en ligne : zéro vulnérabilité signalée.
+- Le commit distant main correspond au livrable revu ; dépôt public et diagrammes Mermaid rendus.
+- Figma ouvert sans connexion : fichier et prototype visibles ; aucune modification des permissions.
+- Les migrations, seeds, instructions et contrats correspondent au périmètre du test.
+
+Aucun blocage identifié pour la remise du test technique. L’intégration OpenAI reste
+vérifiée avec réponses simulées, sans appel payant réel. Cette revue ne constitue pas
+un audit de sécurité exhaustif ni une validation de déploiement en production.
