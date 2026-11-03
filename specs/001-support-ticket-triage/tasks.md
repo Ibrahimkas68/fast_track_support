@@ -72,15 +72,15 @@ verify persisted source/reason and unchanged human priority after refresh.
 
 ### Tests first
 
-- [ ] T021 [P] [US3] Write failing adapter tests in tests/Feature/OpenAiUrgencyAnalyzerTest.php for the fixed Responses request, description-only payload, strict schema, bounded timeouts, disabled redirects/retries and no unexpected outbound calls.
-- [ ] T022 [P] [US3] Write failing integration tests in tests/Feature/UrgencyAnalysisTest.php for missing key, local mode, HTTP errors, timeout, refusal, incomplete/invalid/oversized output and unchanged human priority; use HTTP fakes and preventStrayRequests.
+- [X] T021 [P] [US3] Write failing adapter tests in tests/Feature/OpenAiUrgencyAnalyzerTest.php for the fixed Responses request, description-only payload, strict schema, bounded timeouts, disabled redirects/retries and no unexpected outbound calls.
+- [X] T022 [P] [US3] Write failing integration tests in tests/Feature/UrgencyAnalysisTest.php for missing key, local mode, HTTP errors, timeout, refusal, incomplete/invalid/oversized output and unchanged human priority; use HTTP fakes and preventStrayRequests.
 
 ### Implementation
 
-- [ ] T023 [US3] Implement app/Services/Urgency/OpenAiUrgencyAnalyzer.php against contracts/urgency-analysis.md, including store=false, completed-response parsing, enum/reason validation and controlled failure categories.
-- [ ] T024 [US3] Implement app/Services/Urgency/ResilientUrgencyAnalyzer.php and update app/Providers/AppServiceProvider.php to select local mode or external-with-fallback; reject invalid configuration without exposing secrets.
-- [ ] T025 [US3] Complete safe analysis logging in app/Services/Urgency/ResilientUrgencyAnalyzer.php and provenance/disclosure in resources/views/components/tickets/urgency-analysis.blade.php and resources/views/components/tickets/form.blade.php; test escaping and absence of sensitive logs in tests/Feature/UrgencyAnalysisTest.php.
-- [ ] T026 [US3] Run tests/Feature/OpenAiUrgencyAnalyzerTest.php and tests/Feature/UrgencyAnalysisTest.php, then measure controlled fallback creation against the ten-second target; record actual results and simulation limits in docs/verification.md without paid calls.
+- [X] T023 [US3] Implement app/Services/Urgency/OpenAiUrgencyAnalyzer.php against contracts/urgency-analysis.md, including store=false, completed-response parsing, enum/reason validation and controlled failure categories.
+- [X] T024 [US3] Implement app/Services/Urgency/ResilientUrgencyAnalyzer.php and update app/Providers/AppServiceProvider.php to select local mode or external-with-fallback; reject invalid configuration without exposing secrets.
+- [X] T025 [US3] Complete safe analysis logging in app/Services/Urgency/ResilientUrgencyAnalyzer.php and provenance/disclosure in resources/views/components/tickets/urgency-analysis.blade.php and resources/views/components/tickets/form.blade.php; test escaping and absence of sensitive logs in tests/Feature/UrgencyAnalysisTest.php.
+- [X] T026 [US3] Run tests/Feature/OpenAiUrgencyAnalyzerTest.php and tests/Feature/UrgencyAnalysisTest.php, then measure controlled fallback creation against the ten-second target; record actual results and simulation limits in docs/verification.md without paid calls.
 
 Checkpoint: external success and failures are simulated; local results remain deterministic.
 The local classifier unit tests from US1 are also mandatory regression coverage for US3.

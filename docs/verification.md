@@ -116,3 +116,14 @@ T016 à T019 : 20 tests HTTP passent (77 assertions), avec neuf combinaisons, er
 422, pagination et états vides. Suite : 124 tests, 434 assertions ; Pint réussi.
 Le test du scaffold vérifie désormais la redirection accueil vers /tickets.
 Les contrôles de navigation réels de T020 restent à exécuter.
+
+## Analyse externe résiliente, 2026-11-03
+
+T021 à T026 : adaptateur Responses et composite avec secours local. Suite : 161 tests,
+555 assertions. Les tests vérifient schéma strict, store=false, un seul envoi, URL fixe,
+absence de redirection, timeout 5s et connexion 2s, refus, sortie incomplète, JSON invalide,
+limites de taille, erreurs HTTP et échec de connexion simulé. Les créations en secours
+simulé respectent l’objectif de 10s dans ces tests locaux. Aucun délai réseau réel mesuré.
+Aucun appel LLM réel effectué. Les HTTP fakes interdisent les appels parasites.
+Les sources et motifs sont conservés, les motifs échappés, la priorité humaine inchangée.
+Les journaux ne contiennent que source, durée et catégorie maîtrisée. Pint réussi.

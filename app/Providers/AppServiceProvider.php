@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Contracts\TicketRepositoryInterface;
 use App\Contracts\UrgencyAnalyzerInterface;
 use App\Repositories\EloquentTicketRepository;
-use App\Services\Urgency\RuleBasedUrgencyAnalyzer;
+use App\Services\Urgency\ResilientUrgencyAnalyzer;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(TicketRepositoryInterface::class, EloquentTicketRepository::class);
-        $this->app->bind(UrgencyAnalyzerInterface::class, RuleBasedUrgencyAnalyzer::class);
+        $this->app->bind(UrgencyAnalyzerInterface::class, ResilientUrgencyAnalyzer::class);
     }
 
     /**
