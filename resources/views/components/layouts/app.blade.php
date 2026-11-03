@@ -12,7 +12,7 @@
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-50 focus:bg-white focus:p-4">Aller au contenu</a>
 <header class="border-b border-line bg-white">
     <div class="mx-auto flex min-h-20 max-w-[1280px] items-center justify-between gap-4 px-5 sm:px-8">
-        <a href="{{ route('tickets.index') }}" class="flex min-w-0 items-center gap-3 rounded-lg" aria-label="Fast Track Support, accueil">
+        <a href="{{ route('tickets.index') }}" class="flex min-h-11 min-w-0 items-center gap-3 rounded-lg" aria-label="Fast Track Support, accueil">
             <span class="flex size-10 shrink-0 items-end justify-center gap-1 rounded-xl bg-brand p-2.5" aria-hidden="true"><span class="h-2 w-1 rounded-full bg-white"></span><span class="h-5 w-1 rounded-full bg-white"></span><span class="h-3 w-1 rounded-full bg-white"></span></span>
             <span><span class="block text-sm font-bold sm:text-base">Fast Track Support</span><span class="block text-xs text-muted sm:text-sm">Support interne</span></span>
         </a>

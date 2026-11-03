@@ -53,6 +53,21 @@ if (panel && typeof panel.showModal === 'function') {
     });
 
     closeButton.addEventListener('click', () => panel.close());
+    panel.addEventListener('keydown', (event) => {
+        if (event.key !== 'Tab') return;
+        const controls = [...panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+            .filter((element) => element.getClientRects().length > 0 && !element.closest('[hidden]'));
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (!first) return;
+        if (event.shiftKey && (document.activeElement === first || !controls.includes(document.activeElement))) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || !controls.includes(document.activeElement))) {
+            event.preventDefault();
+            first.focus();
+        }
+    });
     panel.addEventListener('close', () => {
         controller?.abort();
         document.body.style.overflow = previousOverflow;

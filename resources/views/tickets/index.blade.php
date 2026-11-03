@@ -5,11 +5,11 @@
     </div>
     <section class="overflow-hidden rounded-xl border border-line bg-white" aria-label="File des tickets">
         <form method="GET" action="{{ route('tickets.index') }}" class="flex flex-wrap items-end gap-4 border-b border-line p-5 sm:p-6">
-            <x-forms.field name="status" label="Statut" class="w-full sm:w-44">
-                <x-forms.select name="status" :value="$filters['status']" :options="['' => 'Tous', 'open' => 'Ouvert', 'in_progress' => 'En cours', 'resolved' => 'Résolu']" />
+            <x-forms.field name="status" id="filter-status" label="Statut" class="w-full sm:w-44">
+                <x-forms.select name="status" id="filter-status" :value="$filters['status']" :options="['' => 'Tous', 'open' => 'Ouvert', 'in_progress' => 'En cours', 'resolved' => 'Résolu']" />
             </x-forms.field>
-            <x-forms.field name="priority" label="Priorité" class="w-full sm:w-44">
-                <x-forms.select name="priority" :value="$filters['priority']" :options="['' => 'Toutes', 'low' => 'Basse', 'medium' => 'Moyenne', 'high' => 'Haute']" />
+            <x-forms.field name="priority" id="filter-priority" label="Priorité" class="w-full sm:w-44">
+                <x-forms.select name="priority" id="filter-priority" :value="$filters['priority']" :options="['' => 'Toutes', 'low' => 'Basse', 'medium' => 'Moyenne', 'high' => 'Haute']" />
             </x-forms.field>
             <x-ui.button type="submit" variant="secondary">Appliquer</x-ui.button>
             <a href="{{ route('tickets.index') }}" class="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-muted hover:text-brand sm:ml-auto"><span aria-hidden="true">↻</span>Réinitialiser les filtres</a>
@@ -59,7 +59,7 @@
                 @foreach($tickets as $ticket)
                     <li class="space-y-3 p-5">
                         <div class="flex items-center justify-between gap-3 text-xs text-muted"><span class="font-semibold">{{ $ticket->reference }}</span><time datetime="{{ $ticket->created_at->toIso8601String() }}">{{ $ticket->created_at->timezone('Africa/Casablanca')->locale('fr')->translatedFormat('j F Y') }}</time></div>
-                        <a href="{{ route('tickets.show', $ticket->id) }}" data-panel-link aria-label="Ouvrir le ticket {{ $ticket->reference }} : {{ $ticket->title }}" class="block break-words font-semibold hover:text-brand">{{ $ticket->title }}</a>
+                        <a href="{{ route('tickets.show', $ticket->id) }}" data-panel-link aria-label="Ouvrir le ticket {{ $ticket->reference }} : {{ $ticket->title }}" class="flex min-h-11 items-center break-words font-semibold hover:text-brand">{{ $ticket->title }}</a>
                         <p class="line-clamp-2 break-words text-sm leading-6 text-muted">{{ $ticket->description }}</p>
                         <div class="flex flex-wrap gap-2"><x-tickets.priority-badge :priority="$ticket->priority" /><x-tickets.status-badge :status="$ticket->status" /></div>
                     </li>
@@ -67,5 +67,5 @@
             </ul>
         @endif
     </section>
-    @if($tickets->hasPages())<div class="mt-6">{{ $tickets->links() }}</div>@endif
+    @if($tickets->hasPages())<div class="mt-6"><x-tickets.pagination :paginator="$tickets" /></div>@endif
 </x-layouts.app>

@@ -46,7 +46,7 @@ test('paginates the queue in stable newest-first order and retains valid filters
     $response = $this->get('/tickets?status=open&priority=high&page=2&unexpected=discard-me');
 
     $response->assertOk()->assertSee('FT-0025')->assertSee('FT-0006')
-        ->assertDontSee('FT-0045')->assertDontSee('discard-me');
+        ->assertDontSee('FT-0045')->assertDontSee('discard-me')->assertSee('Précédent')->assertSee('Suivant')->assertSee('Page 2 sur 3');
     expect($response->viewData('tickets')->currentPage())->toBe(2);
     expect($response->viewData('tickets')->total())->toBe(45);
     parse_str(parse_url($response->viewData('tickets')->nextPageUrl(), PHP_URL_QUERY), $query);

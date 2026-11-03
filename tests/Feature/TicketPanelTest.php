@@ -18,3 +18,10 @@ test('returns the same ticket detail as a fragment and keeps missing tickets saf
         ->assertSee('Urgence recommandée')->assertDontSee('<html', false);
     $this->get('/tickets/9999?panel=1')->assertNotFound()->assertSee('Page introuvable');
 });
+
+test('uses distinct filter and form identifiers so modal labels remain unambiguous', function () {
+    $this->get('/tickets')->assertOk()->assertSee('for="filter-priority"', false)
+        ->assertSee('id="filter-priority"', false)->assertSee('for="filter-status"', false);
+    $this->get('/tickets/create?panel=1')->assertOk()->assertSee('for="priority"', false)
+        ->assertSee('id="priority"', false)->assertSee('for="status"', false);
+});

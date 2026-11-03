@@ -23,6 +23,8 @@ class TicketSeeder extends Seeder
         ];
         $analyzer = new RuleBasedUrgencyAnalyzer;
 
+        $date = now()->subDay()->startOfDay();
+
         foreach ($examples as $index => [$title, $description, $priority, $status]) {
             $result = $analyzer->analyze($description);
             $fixtureLlm = in_array($index, [0, 1], true);
@@ -36,8 +38,8 @@ class TicketSeeder extends Seeder
                 'analysis_source' => $fixtureLlm ? 'llm' : 'local',
             ]);
             $ticket->forceFill([
-                'created_at' => $index < 3 ? '2026-11-03 10:00:00' : '2026-11-02 10:00:00',
-                'updated_at' => '2026-11-03 10:00:00',
+                'created_at' => $index < 3 ? $date : $date->copy()->subDay(),
+                'updated_at' => $date,
             ])->save();
         }
     }
