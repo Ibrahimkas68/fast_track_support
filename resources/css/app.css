@@ -4,6 +4,28 @@
 @source '../../storage/framework/views/*.php';
 
 @theme {
+    --color-canvas: #F5F7FA;
+    --color-ink: #182230;
+    --color-muted: #526174;
+    --color-line: #DCE3EB;
+    --color-brand: #2457D6;
+    --color-selected: #EDF3FF;
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer base {
+    :focus-visible { outline: 2px solid var(--color-brand); outline-offset: 3px; }
+    button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+    button:not(:disabled), select { cursor: pointer; }
+    [hidden] { display: none !important; }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+}
+@layer components {
+    .form-control {
+        @apply w-full min-h-11 rounded-lg border border-line bg-white px-3 py-2.5 text-base text-ink placeholder:text-slate-400;
+    }
+    .form-control[aria-invalid="true"] { @apply border-red-600; }
 }

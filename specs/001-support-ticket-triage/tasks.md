@@ -16,7 +16,7 @@ implementation batch before editing files.
 - [X] T004 Create database/migrations/2026_11_03_000001_create_tickets_table.php, app/Models/Ticket.php and database/factories/TicketFactory.php using data-model.md: recommendation fields, casts, allowed writes, derived reference and three indexes.
 - [X] T005 Define typed contracts in app/Contracts/TicketRepositoryInterface.php and app/Contracts/UrgencyAnalyzerInterface.php; implement persistence in app/Repositories/EloquentTicketRepository.php with explicit fields, find and filtered pagination.
 - [X] T006 Configure dependency bindings and the configurable creation limiter in app/Providers/AppServiceProvider.php; preserve web middleware and configure safe French error responses in bootstrap/app.php and resources/views/errors/404.blade.php, resources/views/errors/419.blade.php, resources/views/errors/422.blade.php and resources/views/errors/429.blade.php.
-- [ ] T007 Build the Figma layout, tokens and shared controls in resources/css/app.css and resources/views/components/layouts/app.blade.php, resources/views/components/ui/button.blade.php, resources/views/components/ui/alert.blade.php, resources/views/components/ui/empty-state.blade.php, resources/views/components/forms/field.blade.php, resources/views/components/forms/input.blade.php, resources/views/components/forms/select.blade.php and resources/views/components/forms/textarea.blade.php; follow contracts/ui-components.md.
+- [X] T007 Build the Figma layout, tokens and shared controls in resources/css/app.css and resources/views/components/layouts/app.blade.php, resources/views/components/ui/button.blade.php, resources/views/components/ui/alert.blade.php, resources/views/components/ui/empty-state.blade.php, resources/views/components/forms/field.blade.php, resources/views/components/forms/input.blade.php, resources/views/components/forms/select.blade.php and resources/views/components/forms/textarea.blade.php; follow contracts/ui-components.md.
 
 Checkpoint: shared contracts, schema and presentation foundations ready. Interface bindings
 may name planned implementations, but do not resolve them until their story is implemented.
@@ -29,16 +29,16 @@ refresh, and verify persistence; invalid submissions create no ticket.
 
 ### Tests first
 
-- [ ] T008 [P] [US1] Write failing creation tests in tests/Feature/TicketCreationTest.php for defaults, trimmed boundaries, enums, rejected recommendation input, 303 redirect, persisted detail, 404 and recoverable write failure.
-- [ ] T009 [P] [US1] Write failing classifier tests in tests/Unit/RuleBasedUrgencyAnalyzerTest.php covering all impact classes, unknown text, accents, mixed signals and the exact negation examples in spec.md.
+- [X] T008 [P] [US1] Write failing creation tests in tests/Feature/TicketCreationTest.php for defaults, trimmed boundaries, enums, rejected recommendation input, 303 redirect, persisted detail, 404 and recoverable write failure.
+- [X] T009 [P] [US1] Write failing classifier tests in tests/Unit/RuleBasedUrgencyAnalyzerTest.php covering all impact classes, unknown text, accents, mixed signals and the exact negation examples in spec.md.
 
 ### Implementation
 
-- [ ] T010 [US1] Implement deterministic impact rules and French explanations in app/Services/Urgency/RuleBasedUrgencyAnalyzer.php; satisfy T009 without treating every occurrence of urgent or ne as decisive.
-- [ ] T011 [US1] Implement server validation and normalization in app/Http/Requests/StoreTicketRequest.php; accept only title, description, priority and status before analysis.
-- [ ] T012 [US1] Implement creation/detail orchestration in app/Services/TicketService.php; analyze before the atomic insert, preserve human priority and isolate persistence errors without logging sensitive bindings.
-- [ ] T013 [US1] Implement create/store/show in app/Http/Controllers/TicketController.php and routes/web.php; retain Controller → Service → Repository → Model, numeric IDs, CSRF, throttling and explicit redirects.
-- [ ] T014 [US1] Build resources/views/tickets/create.blade.php, resources/views/tickets/show.blade.php and resources/views/components/tickets/form.blade.php, resources/views/components/tickets/detail.blade.php, resources/views/components/tickets/priority-badge.blade.php, resources/views/components/tickets/status-badge.blade.php and resources/views/components/tickets/urgency-analysis.blade.php with escaped output, old input, field errors and separate recommendation provenance.
+- [X] T010 [US1] Implement deterministic impact rules and French explanations in app/Services/Urgency/RuleBasedUrgencyAnalyzer.php; satisfy T009 without treating every occurrence of urgent or ne as decisive.
+- [X] T011 [US1] Implement server validation and normalization in app/Http/Requests/StoreTicketRequest.php; accept only title, description, priority and status before analysis.
+- [X] T012 [US1] Implement creation/detail orchestration in app/Services/TicketService.php; analyze before the atomic insert, preserve human priority and isolate persistence errors without logging sensitive bindings.
+- [X] T013 [US1] Implement create/store/show in app/Http/Controllers/TicketController.php and routes/web.php; retain Controller → Service → Repository → Model, numeric IDs, CSRF, throttling and explicit redirects.
+- [X] T014 [US1] Build resources/views/tickets/create.blade.php, resources/views/tickets/show.blade.php and resources/views/components/tickets/form.blade.php, resources/views/components/tickets/detail.blade.php, resources/views/components/tickets/priority-badge.blade.php, resources/views/components/tickets/status-badge.blade.php and resources/views/components/tickets/urgency-analysis.blade.php with escaped output, old input, field errors and separate recommendation provenance.
 - [ ] T015 [US1] Prevent simultaneous submissions and focus the first validation error in resources/js/forms.js, imported by resources/js/app.js; run creation/classifier tests and record browser persistence, retry and double-click results in docs/verification.md.
 
 Checkpoint: US1 works without a provider or JavaScript. Run T008/T009 to confirm the

@@ -95,3 +95,17 @@ Les 13 cas de FoundationTest passent (30 assertions). Suite : 60 tests, 132 asse
 Les réponses JSON et les en-têtes Retry-After/X-RateLimit sont préservés. Les détails
 d’exception restent masqués même avec debug actif. Pint réussi. Le limiteur est
 enregistré ; son attachement à la route de création sera réalisé dans T013.
+
+## Création et analyse locale, 2026-11-03
+
+T007 à T014 : composants Blade, formulaire, validation, service et analyse locale.
+19 cas unitaires de classification passent (73 assertions), dont les exemples de négation.
+25 cas de création passent (151 assertions), avec limites Unicode, entrée forgée refusée,
+saisie conservée et panne de persistance récupérable. Suite : 104 tests, 356 assertions.
+Pint et build Vite réussis. Le suivi de session des tests multi-requêtes utilise le cookie
+réel de session pour reproduire le navigateur avec la sérialisation JSON Laravel 13.
+
+Le connecteur Figma a retourné les références du code layer mais n’a pas permis leur
+lecture ni le rendu du nœud. La présentation utilise la capture fournie et le contrat UI.
+Aucune revendication de correspondance pixel à pixel. Les contrôles navigateur de T015
+et l’intégration des panneaux restent à exécuter.
